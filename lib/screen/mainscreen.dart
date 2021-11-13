@@ -1,4 +1,8 @@
+import 'package:dotcom_mart/controller/cart_controller.dart';
+import 'package:dotcom_mart/screen/cartlistscreen.dart';
+import 'package:dotcom_mart/screen/productslist.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -10,8 +14,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = [
-    SafeArea(child: Text("Product")),
-    SafeArea(child: Text("Cart")),
+    SafeArea(child: ProductListScreen()),
+    SafeArea(child: CartListScreen()),
     SafeArea(child: Text("Account")),
   ];
   @override
@@ -34,16 +38,21 @@ class _MainScreenState extends State<MainScreen> {
                     setState(() {});
                   },
                 ),
-                ButtonNav(
-                  title: "Cart",
-                  iconActive: Icons.shopping_bag_outlined,
-                  isActive: _selectedIndex == 1,
-                  showBadge: true,
-                  counter: 20,
-                  onTap: () {
-                    print(1);
-                    _selectedIndex = 1;
-                    setState(() {});
+                GetBuilder<CartController>(
+                  init: CartController(),
+                  builder: (controller) {
+                    return ButtonNav(
+                      title: "Cart",
+                      iconActive: Icons.shopping_bag_outlined,
+                      isActive: _selectedIndex == 1,
+                      showBadge: controller.itemCount>0,
+                      counter: controller.itemQtyCount,
+                      onTap: () {
+                        print(1);
+                        _selectedIndex = 1;
+                        setState(() {});
+                      },
+                    );
                   },
                 ),
                 ButtonNav(
@@ -88,6 +97,7 @@ class ButtonNav extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: Container(
+            padding: EdgeInsets.all(10),
             height: 70,
             child: Column(
               children: [
@@ -111,13 +121,13 @@ class ButtonNav extends StatelessWidget {
         if (showBadge)
           Positioned(
             right: 0,
-            left: 0,
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.red),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+                borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
               child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 5),
                 color: Colors.red,
                 child: Text(
                   counter.toString(),

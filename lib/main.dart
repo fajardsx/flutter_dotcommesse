@@ -1,5 +1,4 @@
 import 'package:dotcom_mart/screen/mainscreen.dart';
-import 'package:dotcom_mart/screen/screencounter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
