@@ -32,6 +32,17 @@ class CartListScreen extends StatelessWidget {
                         label: Text("Rp. ${controller.totalAmount.toString()}"),
                         backgroundColor: Theme.of(context).primaryColor,
                       ),
+                      GetBuilder<CartController>(
+                        init: CartController(),
+                        builder: (controller) {
+                          return TextButton(
+                            onPressed: () {
+                              controller.saveOrder();
+                            },
+                            child: Text("Order now"),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

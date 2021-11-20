@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:dotcom_mart/models/Cartitem.dart';
 import 'package:dotcom_mart/models/Products.dart';
+import 'package:dotcom_mart/models/save_response.dart';
+import 'package:dotcom_mart/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
+  var isLoading = true.obs;
   Map<int, CartItem> _items = {};
   // Get all item
   Map<int, CartItem> get items {
@@ -59,6 +64,31 @@ class CartController extends GetxController {
       update();
       Get.snackbar("info", "${product.title} Success add cart",
           backgroundColor: Colors.green, snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  Future<SaveResponse> saveOrder() async {
+    isLoading(true);
+    try {
+      List<CartItem> items = []; // container 
+      _items.forEach((key, value) {
+        items.add(value);
+      });
+      //warper pertama
+      Map<String, dynamic> content = {'items': items};
+
+      var response = await ApiService.orderItem(content);
+      // print(response.body);
+      // var message = jsonDecode(response.body)['message'];
+      // print(message);
+      var jsbody = SaveResponse.fromJson(jsonDecode(response.body));
+      if(jsbody.message == "success"){
+        _items.clear();
+        update();
+      }
+      return jsbody;
+    } finally {
+      isLoading(false);
     }
   }
 }

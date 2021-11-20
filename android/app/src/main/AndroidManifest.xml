@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dotcom_mart">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="dotcom_mart"
         android:icon="@mipmap/ic_launcher">

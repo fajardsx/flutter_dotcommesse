@@ -9,4 +9,10 @@ class CartItem {
       required this.producttitle,
       required this.productquantity,
       required this.productprice});
+
+  Map<String,dynamic> toJson()=>{
+    "product_id":int.parse(id),
+    "user_id":2,// Hard Code kalo user sudah login dan dapat user id
+    "qty":productquantity,
+  };
 }
