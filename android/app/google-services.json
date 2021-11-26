@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "154316990262",
+    "project_id": "dotcomesse",
+    "storage_bucket": "dotcomesse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154316990262:android:78d64ab985691478a07597",
+        "android_client_info": {
+          "package_name": "com.example.dotcom_mart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154316990262-8sg30coo702b5mpbg3gmloofm48qor7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2hg5v1BMWdjHIurce6mBO_VAQs7WdHtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154316990262-8sg30coo702b5mpbg3gmloofm48qor7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
